@@ -90,3 +90,122 @@ inputName.value
 
 
 // 2021-01-21 21:39 Finished
+
+
+
+//Tipagem objetos interface
+
+//errado
+function showCity(user: {name: string, address: { city: string}})
+{
+    return user.name
+}
+
+
+//correto
+interface User {
+    name: string,
+    addres?: {
+        city: string
+    }
+
+    sayHello: () => void
+}
+
+
+
+function showCities(user: User){
+    user.sayHello = () => console.log('posso receber informação apenas por metodo')
+
+    //opcional errado
+    return user.addres.city
+
+    //opcional indiferente
+    return user.addres?.city
+
+    //opcional correto
+    return user.addres ? user.addres.city : 'campinas'
+
+}
+
+
+//readonly
+
+
+interface Users{
+    readonly name: string,
+    age: number
+}
+
+let user: Users = {
+    name: 'jovem',
+    age: 20
+}
+
+
+//extendes, implements
+
+//extends
+interface carros {
+    rodas: number,
+    acelerar: () => void,
+    freiar: () => void
+}
+
+interface Moto extends carros{
+    capacete: boolean,
+    empinar: () => void
+}
+
+let bross: Moto
+
+bross.acelerar
+
+
+
+//implements
+interface veiculos {
+    motor: boolean,
+    gasolina: boolean,
+}
+
+class criarVeiculo implements veiculos{
+    motor: boolean
+    gasolina: boolean
+
+    constructor(motor: boolean, gasolina: boolean){
+        this.motor = motor
+        this.gasolina = gasolina
+    }
+}
+
+
+
+//pick, omit
+
+
+//PICK
+interface post {
+    readonly id: number,
+    title: string,
+    description: string
+}
+
+type PostPreview = Pick<post, 'id'|'title'>
+
+let post: PostPreview
+
+post.title
+
+
+//Omit
+
+type PostOmit = Omit<post, 'id'|'title'>
+
+let postOmit: PostOmit
+
+postOmit.description
+
+
+
+// 2021-01-24 20:26 Finished
