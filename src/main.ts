@@ -207,5 +207,16 @@ let postOmit: PostOmit
 postOmit.description
 
 
+//import js alter tsconfig to allowJs = true
 
+import {sum} from './calculator.js'
+
+console.log(sum(1,1))
+
+//dependencies
+
+//name.d.ts de definição
+import axios from 'axios'
+
+axios.get('')
 // 2021-01-24 20:26 Finished
